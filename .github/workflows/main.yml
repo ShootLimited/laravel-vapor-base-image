@@ -26,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/laravel-vapor-wkhtmltopdf:${{ github.head_ref || github.ref_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vapor-wkhtml-imagemagick:${{ github.head_ref || github.ref_name }}
