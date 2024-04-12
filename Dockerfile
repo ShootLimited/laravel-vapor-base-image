@@ -1,33 +1,32 @@
-FROM surnet/alpine-wkhtmltopdf:3.9-0.12.5-full as wkhtmltopdf
+FROM surnet/alpine-wkhtmltopdf:3.19.1-0.12.6-full as wkhtmltopdf
 
 FROM laravelphp/vapor:php81
 
-RUN apk add --no-cache \
-  libstdc++ \
-  libx11 \
-  libxrender \
-  libxext \
-  libssl1.1 \
-  ca-certificates \
-  fontconfig \
-  freetype \
-  ttf-dejavu \
-  ttf-droid \
-  ttf-freefont \
-  ttf-liberation \
-#  ttf-ubuntu-font-family \
-&& apk add --no-cache --virtual .build-deps \
-  msttcorefonts-installer \
-\
-# Install microsoft fonts
-&& update-ms-fonts \
-&& fc-cache -f \
-\
-# Clean up when done
-&& rm -rf /tmp/* \
-&& apk del .build-deps
+RUN apk add --no-cache libstdc++
+RUN apk add --no-cache libx11
+RUN apk add --no-cache libxrender
+RUN apk add --no-cache libxext
+RUN apk add --no-cache libssl3
+RUN apk add --no-cache ca-certificates
+RUN apk add --no-cache fontconfig
+RUN apk add --no-cache freetype
+RUN apk add --no-cache ttf-dejavu
+RUN apk add --no-cache ttf-droid
+RUN apk add --no-cache ttf-freefont
+RUN apk add --no-cache ttf-liberation
+RUN apk add --no-cache imagemagick
+RUN apk add --no-cache imagemagick-dev
 
-# Copy wkhtmltopdf files from docker-wkhtmltopdf image
+RUN apk add --no-cache --virtual .build-deps msttcorefonts-installer
+RUN update-ms-fonts
+RUN fc-cache -f
+
+RUN rm -rf /tmp/*
+RUN apk del .build-deps
+
 COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/wkhtmltopdf
 COPY --from=wkhtmltopdf /bin/wkhtmltoimage /bin/wkhtmltoimage
 COPY --from=wkhtmltopdf /bin/libwkhtmltox* /bin/
+
+RUN pecl install -o -f imagick
+RUN docker-php-ext-enable imagick
