@@ -15,7 +15,8 @@ RUN apk add --no-cache \
   ttf-droid \
   ttf-freefont \
   ttf-liberation \
-#  ttf-ubuntu-font-family \
+  imagemagick \
+  imagemagick-dev \
 && apk add --no-cache --virtual .build-deps \
   msttcorefonts-installer \
 \
