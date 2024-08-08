@@ -1,4 +1,4 @@
-FROM surnet/alpine-wkhtmltopdf:3.20.2-0.12.6-full as wkhtmltopdf
+FROM surnet/alpine-wkhtmltopdf:3.20.2-0.12.6-full AS wkhtmltopdf
 
 FROM laravelphp/vapor:php82
 
@@ -7,7 +7,7 @@ RUN apk add --no-cache \
   libx11 \
   libxrender \
   libxext \
-  libssl1.1 \
+  libssl3 \
   ca-certificates \
   fontconfig \
   freetype \
