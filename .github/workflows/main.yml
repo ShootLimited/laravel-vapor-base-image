@@ -10,12 +10,12 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
-      -
-        name: Login to Docker Hub
-        uses: docker/login-action@v2
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -26,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/laravel-vapor-wkhtmltopdf:${{ github.head_ref || github.ref_name }}
+          tags: ghcr.io/ShootLimited/laravel-vapor-base-image:${{ github.head_ref || github.ref_name }}
