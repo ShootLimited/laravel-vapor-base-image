@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61991082-848c-4da9-a868-b725c71aabc1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/main.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1677843733332</updated>
       <workItem from="1677843734396" duration="285000" />
-      <workItem from="1773415875783" duration="877000" />
+      <workItem from="1773415875783" duration="1125000" />
     </task>
     <servers />
   </component>
