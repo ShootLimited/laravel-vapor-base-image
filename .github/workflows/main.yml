@@ -26,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/ShootLimited/laravel-vapor-base-image:${{ github.head_ref || github.ref_name }}
+          tags: ghcr.io/shootlimited/laravel-vapor-base-image:${{ github.head_ref || github.ref_name }}
