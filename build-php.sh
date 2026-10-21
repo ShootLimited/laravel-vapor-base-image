@@ -5,6 +5,7 @@ apk add --no-cache --virtual .php-security-build-deps \
     $PHPIZE_DEPS \
     argon2-dev \
     curl-dev \
+    gnu-libiconv-dev \
     libsodium-dev \
     readline-dev \
     sqlite-dev
@@ -13,6 +14,9 @@ docker-php-source delete
 curl --fail --show-error --location "$PHP_URL" --output /usr/src/php.tar.xz
 echo "$PHP_SHA256  /usr/src/php.tar.xz" | sha256sum -c -
 docker-php-source extract
+
+# Match the official PHP Alpine build: use GNU iconv rather than musl's header.
+rm -f /usr/include/iconv.h
 
 export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS"
 cd /usr/src/php
