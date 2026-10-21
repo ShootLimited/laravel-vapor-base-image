@@ -18,7 +18,7 @@ docker-php-source extract
 # Match the official PHP Alpine build: use GNU iconv rather than musl's header.
 rm -f /usr/include/iconv.h
 
-export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS"
+export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS -I/usr/include/gnu-libiconv" LDFLAGS="$PHP_LDFLAGS"
 cd /usr/src/php
 ./configure \
     --build=x86_64-linux-musl \
@@ -50,7 +50,7 @@ make install
 
 docker-php-ext-configure gd --with-freetype=/usr/lib/ --with-jpeg=/usr/lib/
 docker-php-ext-install -j4 \
-    bcmath gd gettext intl mysqli opcache pcntl pdo_mysql pdo_pgsql \
+    bcmath gd gettext intl mysqli pcntl pdo_mysql pdo_pgsql \
     soap sockets xsl zip
 
 cd /
