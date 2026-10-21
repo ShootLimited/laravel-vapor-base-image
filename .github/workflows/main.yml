@@ -28,5 +28,6 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          pull: true
           push: true
-          tags: ghcr.io/shootlimited/laravel-vapor-base-image:${{ github.head_ref || github.ref_name }}
+          tags: ghcr.io/shootlimited/laravel-vapor-base-image:8.2.35-imagemagick
