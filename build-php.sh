@@ -11,7 +11,7 @@ apk add --no-cache --virtual .php-security-build-deps \
 
 docker-php-source delete
 curl --fail --show-error --location "$PHP_URL" --output /usr/src/php.tar.xz
-echo "$PHP_SHA256  /usr/src/php.tar.xz" | sha256sum --check --strict
+echo "$PHP_SHA256  /usr/src/php.tar.xz" | sha256sum -c -
 docker-php-source extract
 
 export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS"
